@@ -18,14 +18,19 @@ def delivery_report(err, msg):
     else:
         print(f"Message delivered to {msg.topic()} [{msg.partition()}]")
 
-while True:
-    worker_id = random.choice(WORKERS)
-    keystroke_count = random.randint(1, 10)
-    event = {
-        'workerId': worker_id,
-        'count': keystroke_count,
-        'timestamp': int(time.time())
-    }
-    producer.produce(TOPIC, json.dumps(event).encode('utf-8'), callback=delivery_report)
+try:
+    while True:
+        worker_id = random.choice(WORKERS)
+        keystroke_count = random.randint(1, 10)
+        event = {
+            'workerId': worker_id,
+            'count': keystroke_count,
+            'timestamp': int(time.time())
+        }
+        producer.produce(TOPIC, json.dumps(event).encode('utf-8'), callback=delivery_report)
+        producer.poll(0)  # serve delivery reports async
+        time.sleep(1)
+except KeyboardInterrupt:
+    print("Stopping producer...")
+finally:
     producer.flush()
-    time.sleep(1)
