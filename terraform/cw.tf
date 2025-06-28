@@ -45,3 +45,14 @@ resource "aws_cloudwatch_log_group" "oss_cw_log_rds_group_upgrade_logs" {
     Name = "OssCwLogGroupRdsPostgres"
   }
 }
+
+resource "aws_cloudwatch_log_group" "oss_cw_log_rds_group_metrics_logs" {
+  kms_key_id        = aws_kms_key.oss_kms_key_cw.arn
+  name              = "RDSOSMetrics"
+  retention_in_days = 30
+  tags = {
+    Name = "OssCwLogGroupRdsPostgres"
+  }
+}
+
+

@@ -11,6 +11,7 @@ resource "aws_ecr_repository" "oss_ecr_repo_producer" {
     encryption_type = "KMS"
     kms_key         = aws_kms_key.oss_kms_key_ecr.arn
   }
+  force_delete = true
 }
 
 resource "aws_ecr_repository" "oss_ecr_repo_consumer" {
@@ -26,6 +27,7 @@ resource "aws_ecr_repository" "oss_ecr_repo_consumer" {
     encryption_type = "KMS"
     kms_key         = aws_kms_key.oss_kms_key_ecr.arn
   }
+  force_delete = true
 }
 
 
@@ -42,6 +44,7 @@ resource "aws_ecr_repository" "oss_ecr_repo_dashboard" {
     encryption_type = "KMS"
     kms_key         = aws_kms_key.oss_kms_key_ecr.arn
   }
+  force_delete = true
 }
 
 resource "aws_ecr_repository" "oss_ecr_repo_migrator" {
@@ -57,4 +60,5 @@ resource "aws_ecr_repository" "oss_ecr_repo_migrator" {
     encryption_type = "KMS"
     kms_key         = aws_kms_key.oss_kms_key_ecr.arn
   }
+  force_delete = true
 }

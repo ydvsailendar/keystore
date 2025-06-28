@@ -31,6 +31,13 @@ resource "aws_db_instance" "oss_db_instance_rds" {
     "upgrade",
     "iam-db-auth-error"
   ]
+  depends_on = [
+    aws_db_parameter_group.oss_db_pg,
+    aws_cloudwatch_log_group.oss_cw_log_group_rds_postgresql_logs,
+    aws_cloudwatch_log_group.oss_cw_log_rds_group_error_logs,
+    aws_cloudwatch_log_group.oss_cw_log_rds_group_upgrade_logs,
+    aws_cloudwatch_log_group.oss_cw_log_rds_group_metrics_logs
+  ]
 }
 
 resource "aws_db_parameter_group" "oss_db_pg" {
