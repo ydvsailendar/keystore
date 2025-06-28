@@ -30,7 +30,7 @@ resource "aws_cloudwatch_log_group" "oss_cw_log_group_rds_postgresql_logs" {
 
 resource "aws_cloudwatch_log_group" "oss_cw_log_rds_group_error_logs" {
   kms_key_id        = aws_kms_key.oss_kms_key_cw.arn
-  name              = "/aws/rds/instance/keystroke/error"
+  name              = "/aws/rds/instance/keystroke/iam-db-auth-error"
   retention_in_days = 30
   tags = {
     Name = "OssCwLogGroupRdsPostgres"
